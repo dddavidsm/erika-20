@@ -37,6 +37,13 @@ export const generatedPhotos: Photo[] = [
     "month": "abril"
   },
   {
+    "id": "mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
+    "fileName": "b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
+    "relativePath": "mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
+    "src": "/photos/mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
+    "month": "mayo"
+  },
+  {
     "id": "mayo/IMG_3215.JPEG",
     "fileName": "IMG_3215.JPEG",
     "relativePath": "mayo/IMG_3215.JPEG",

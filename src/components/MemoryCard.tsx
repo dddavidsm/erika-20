@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useCallback, useState } from 'react'
 import type { MemorySize } from '../types/memory'
 import type { Photo } from '../types/photo'
 
@@ -12,13 +12,26 @@ interface MemoryCardProps {
 
 function MemoryCard({ photo, index, size, onOpen, onAspectRatio }: MemoryCardProps) {
   const [hasError, setHasError] = useState(false)
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => onOpen(photo, event.currentTarget),
+    [onOpen, photo],
+  )
+  const handleLoad = useCallback(
+    (event: React.SyntheticEvent<HTMLImageElement>) => {
+      const { naturalHeight, naturalWidth } = event.currentTarget
+      if (naturalWidth > 0 && naturalHeight > 0) {
+        onAspectRatio(photo.id, naturalWidth / naturalHeight)
+      }
+    },
+    [onAspectRatio, photo.id],
+  )
 
   return (
     <button
       className={`photo-card photo-card--${size}${hasError ? ' photo-card--missing' : ''}`}
       type="button"
       aria-label={`Abrir recuerdo ${index + 1}`}
-      onClick={(event) => onOpen(photo, event.currentTarget)}
+      onClick={handleClick}
     >
       {!hasError && (
         <img
@@ -26,12 +39,7 @@ function MemoryCard({ photo, index, size, onOpen, onAspectRatio }: MemoryCardPro
           alt={`Recuerdo ${index + 1}`}
           loading="lazy"
           decoding="async"
-          onLoad={(event) => {
-            const { naturalHeight, naturalWidth } = event.currentTarget
-            if (naturalWidth > 0 && naturalHeight > 0) {
-              onAspectRatio(photo.id, naturalWidth / naturalHeight)
-            }
-          }}
+          onLoad={handleLoad}
           onError={() => setHasError(true)}
         />
       )}
@@ -43,4 +51,4 @@ function MemoryCard({ photo, index, size, onOpen, onAspectRatio }: MemoryCardPro
   )
 }
 
-export default MemoryCard
+export default memo(MemoryCard)

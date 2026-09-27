@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
 import Ending from './components/Ending'
 import Gallery from './components/Gallery'
@@ -41,17 +41,18 @@ function App() {
     return () => window.clearTimeout(timer)
   }, [viewerStatus])
 
-  const openViewer = (photo: Photo, sourceElement: HTMLElement) => {
+  const openViewer = useCallback((photo: Photo, sourceElement: HTMLElement) => {
     lastFocusedElement.current = sourceElement
     setActivePhoto(photo)
     setViewerStatus('opening')
-  }
+  }, [])
 
-  const closeViewer = () => {
-    if (viewerStatus === 'opening' || viewerStatus === 'open') {
-      setViewerStatus('closing')
-    }
-  }
+  const closeViewer = useCallback(() => {
+    setViewerStatus((currentStatus) => {
+      if (currentStatus === 'opening' || currentStatus === 'open') return 'closing'
+      return currentStatus
+    })
+  }, [])
 
   const activeMemory = activePhoto ? memoryContent[activePhoto.id] : undefined
 

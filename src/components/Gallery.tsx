@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { memoryContent } from '../data/memories'
 import type { MemorySize } from '../types/memory'
 import type { Photo } from '../types/photo'
@@ -30,6 +30,42 @@ function getColumnCount(width: number) {
   return 4
 }
 
+const spanishMonths: Record<string, number> = {
+  enero: 0,
+  febrero: 1,
+  marzo: 2,
+  abril: 3,
+  mayo: 4,
+  junio: 5,
+  julio: 6,
+  agosto: 7,
+  septiembre: 8,
+  octubre: 9,
+  noviembre: 10,
+  diciembre: 11,
+}
+
+function parseMemoryDate(value: string | undefined) {
+  if (!value) return null
+
+  const normalized = value.trim().toLocaleLowerCase('es-ES')
+  const numericDate = normalized.match(/^(\d{1,2})[-/]\s?(\d{1,2})[-/]\s?(\d{4})$/)
+  if (numericDate) {
+    const [, day, month, year] = numericDate
+    return Date.UTC(Number(year), Number(month) - 1, Number(day))
+  }
+
+  const writtenDate = normalized.match(/^(\d{1,2})\s+de\s+([a-záéíóú]+)\s+de\s+(\d{4})$/)
+  if (writtenDate) {
+    const [, day, month, year] = writtenDate
+    const monthIndex = spanishMonths[month]
+    if (monthIndex !== undefined) return Date.UTC(Number(year), monthIndex, Number(day))
+  }
+
+  const parsedDate = Date.parse(value)
+  return Number.isNaN(parsedDate) ? null : parsedDate
+}
+
 function createRows(photos: Photo[], aspectRatios: Record<string, number>, columnCount: number) {
   const rows: Photo[][] = []
   const targetRatioTotal = columnCount * 1.2
@@ -59,6 +95,22 @@ function Gallery({ photos, onOpen }: GalleryProps) {
   const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({})
   const [columnCount, setColumnCount] = useState(() => getColumnCount(window.innerWidth))
 
+  const orderedPhotos = useMemo(
+    () =>
+      photos
+        .map((photo, index) => ({ photo, index, date: parseMemoryDate(memoryContent[photo.id]?.date) }))
+        .sort((left, right) => {
+          if (left.date !== null && right.date !== null && left.date !== right.date) {
+            return left.date - right.date
+          }
+          if (left.date !== null && right.date === null) return -1
+          if (left.date === null && right.date !== null) return 1
+          return left.index - right.index
+        })
+        .map(({ photo }) => photo),
+    [photos],
+  )
+
   useEffect(() => {
     const handleResize = () => setColumnCount(getColumnCount(window.innerWidth))
 
@@ -67,16 +119,16 @@ function Gallery({ photos, onOpen }: GalleryProps) {
   }, [])
 
   const rows = useMemo(
-    () => createRows(photos, aspectRatios, columnCount),
-    [aspectRatios, columnCount, photos],
+    () => createRows(orderedPhotos, aspectRatios, columnCount),
+    [aspectRatios, columnCount, orderedPhotos],
   )
 
-  const handleAspectRatio = (id: string, ratio: number) => {
+  const handleAspectRatio = useCallback((id: string, ratio: number) => {
     setAspectRatios((current) => {
       if (current[id] === ratio) return current
       return { ...current, [id]: ratio }
     })
-  }
+  }, [])
 
   return (
     <section className="gallery-section" id="recuerdos" aria-labelledby="gallery-title">
@@ -85,7 +137,7 @@ function Gallery({ photos, onOpen }: GalleryProps) {
         <h2 id="gallery-title">Nuestros recuerdos</h2>
       </div>
 
-      {photos.length > 0 ? (
+      {orderedPhotos.length > 0 ? (
         <div className="gallery-grid">
           {rows.map((row, rowIndex) => (
             <div
@@ -98,7 +150,7 @@ function Gallery({ photos, onOpen }: GalleryProps) {
               }}
             >
               {row.map((photo) => {
-                const photoIndex = photos.findIndex((item) => item.id === photo.id)
+                const photoIndex = orderedPhotos.findIndex((item) => item.id === photo.id)
                 const memory = memoryContent[photo.id]
                 const size = memory?.size ?? sizePattern[photoIndex % sizePattern.length]
 
@@ -123,4 +175,4 @@ function Gallery({ photos, onOpen }: GalleryProps) {
   )
 }
 
-export default Gallery
+export default memo(Gallery)

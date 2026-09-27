@@ -33,6 +33,8 @@ export const memoryContent = {
 
 El archivo ya contiene una entrada vacía preparada para cada fotografía existente. Solo tienes que sustituir `title`, `date` y `text` en cada entrada. La plantilla no muestra textos de prueba mientras esos campos estén vacíos.
 
+El collage utiliza el campo `date` para ordenar las fotografías de la más antigua a la más reciente. Se admiten fechas como `19-05-2026` o `19 de mayo de 2026`.
+
 Los tamaños disponibles son `normal`, `wide`, `tall` y `big`. Las fotos sin entrada en este archivo aparecen igualmente y muestran una parte trasera discreta.
 
 Si una entrada apunta a una foto que ya no existe, simplemente se ignora porque las fotografías presentes son la fuente principal del álbum.

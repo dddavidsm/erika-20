@@ -47,9 +47,9 @@ function MemoryViewer({ photo, content, status, onClose }: MemoryViewerProps) {
         aria-label={title || 'Recuerdo'}
         onKeyDown={handleKeyDown}
       >
-        <div className={`memory-viewer__card${status === 'open' ? ' is-flipped' : ''}`}>
+        <div className="memory-viewer__card">
           <div className="memory-viewer__face memory-viewer__front" aria-hidden={status === 'open'}>
-            <img src={photo.src} alt="" decoding="async" />
+            <img src={photo.src} alt="" decoding="async" loading="eager" fetchPriority="high" />
           </div>
           <div className="memory-viewer__face memory-viewer__back">
             <div className="memory-viewer__copy">
