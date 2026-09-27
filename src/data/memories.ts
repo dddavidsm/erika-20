@@ -19,9 +19,9 @@ export const memoryContent: MemoryContentMap = {
     size: 'normal',
   },
   'abril/IMG_1896.JPEG': {
-    title: 'Boyito de chocolate',
+    title: 'Bollito de chocolate',
     date: '06-04-2026',
-    text: 'Un boyito de chocolate, dulce y tierno, no tiene nada que envidiar a esa cara preciosa.',
+    text: 'Un bollito de chocolate, dulce y tierno, no tiene nada que envidiar a esa cara preciosa.',
     size: 'normal',
   },
   'abril/IMG_2172.JPEG': {
@@ -73,7 +73,7 @@ export const memoryContent: MemoryContentMap = {
     size: 'normal',
   },
   'junio/IMG_3349.JPEG': {
-    title: 'Max y tu',
+    title: 'Max y tú',
     date: '09-06-2026',
     text: 'Max te quiere, no tanto como yo, pero se alegra siempre de verte.',
     size: 'normal',
@@ -129,7 +129,7 @@ export const memoryContent: MemoryContentMap = {
   'agosto/8AF1A14A-5B19-42A5-8AEC-95F96CA3BA26_22A2A9AE-9965-4BB9-9EE5-2F4FBC6C7284.JPEG': {
     title: 'Sushi',
     date: '01-08-2026',
-    text: 'Mi compañía favorita, y mi comida favorita, siempre es un placer compartir una pieza de sushi contigo, un niguiri no, pero otra sí, jijiji, te amo.',
+    text: 'Mi compañía favorita, y mi comida favorita, siempre es un placer compartir una pieza de sushi contigo, un nigiri no, pero otra sí, jijiji, te amo.',
     size: 'normal',
   },
   'agosto/IMG_4149.JPEG': {
@@ -147,7 +147,7 @@ export const memoryContent: MemoryContentMap = {
   'septiembre/e07771a9-84cd-499c-83b1-3a12fd378b0d.JPEG': {
     title: 'Una historia para recordar',
     date: '05-09-2026',
-    text: 'Me encanta tener fotos contigo, aunque tu siempre salgas mucho mejor que yo.',
+    text: 'Me encanta tener fotos contigo, aunque tú siempre salgas mucho mejor que yo.',
     size: 'normal',
   },
   'septiembre/IMG_4955.JPEG': {
@@ -159,13 +159,13 @@ export const memoryContent: MemoryContentMap = {
   'septiembre/IMG_5053.JPEG': {
     title: 'El ataque',
     date: '10-09-2026',
-    text: 'No me esperaba esa reacción, pero solo podías hacerlo tú, y me encanta, aunque quiero hacerte fotos infraganti, para las próximas avísame y me preparo para defenderme.',
+    text: 'No me esperaba esa reacción, pero solo podías hacerlo tú, y me encanta, aunque quiero hacerte fotos in fraganti, para las próximas avísame y me preparo para defenderme.',
     size: 'normal',
   },
   'septiembre/IMG_5071.JPEG': {
     title: 'Merendolas',
     date: '11-09-2026',
-    text: 'Ese cuerpo tiene que estar bien nutrío, y qué mejor plan que merendolar juntos.',
+    text: 'Ese cuerpo tiene que estar bien nutrido, y qué mejor plan que merendolar juntos.',
     size: 'normal',
   },
   'septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG': {
