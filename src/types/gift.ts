@@ -1,6 +1,11 @@
-export type DestinationId = 'paris' | 'roma' | 'lisboa' | 'kioto' | 'nueva-york'
+export type DestinationId = 'sevilla' | 'paris' | 'roma' | 'viena' | 'londres'
 
 export type TravelMonth =
+  | 'enero'
+  | 'febrero'
+  | 'marzo'
+  | 'noviembre'
+  | 'diciembre'
   | 'abril'
   | 'mayo'
   | 'junio'
@@ -8,13 +13,12 @@ export type TravelMonth =
   | 'agosto'
   | 'septiembre'
   | 'octubre'
-  | 'noviembre'
-  | 'diciembre'
 
 export interface DestinationSpot {
   name: string
   description: string
-  symbol: string
+  image: string
+  sourceUrl: string
 }
 
 export interface Destination {
@@ -23,5 +27,7 @@ export interface Destination {
   country: string
   eyebrow: string
   description: string
+  image: string
+  sourceUrl: string
   spots: DestinationSpot[]
 }

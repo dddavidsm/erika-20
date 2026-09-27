@@ -3,9 +3,8 @@ import { motion } from 'motion/react'
 import { destinations } from '../data/destinations'
 import type { DestinationId, TravelMonth } from '../types/gift'
 import DestinationArtwork from './DestinationArtwork'
-import DestinationSpotArtwork from './DestinationSpotArtwork'
 
-const travelMonths: TravelMonth[] = ['abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+const travelMonths: TravelMonth[] = ['noviembre', 'diciembre', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre']
 const dayOptions = [2, 3, 4, 5, 7]
 
 function GiftSection() {
@@ -115,13 +114,9 @@ function GiftSection() {
               </div>
             </div>
             <div className="destination-spots">
-              {exploredDestination.spots.map((spot, index) => (
+              {exploredDestination.spots.map((spot) => (
                 <div className="destination-spot" key={spot.name}>
-                  <DestinationSpotArtwork
-                    destination={exploredDestination.id}
-                    index={index}
-                    label={`${spot.name}, ${exploredDestination.name}`}
-                  />
+                  <img className="destination-spot__art" src={spot.image} alt={`${spot.name}, ${exploredDestination.name}`} loading="lazy" decoding="async" />
                   <div>
                     <strong>{spot.name}</strong>
                     <p>{spot.description}</p>
