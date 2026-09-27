@@ -259,8 +259,9 @@
   place-items: center;
   padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   background: var(--overlay);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  contain: layout paint;
   will-change: opacity;
 }
 
@@ -390,8 +391,7 @@
   transition: background 200ms ease, opacity 500ms 350ms ease;
 }
 
-.memory-viewer--open .memory-viewer__close,
-.memory-viewer--opening .memory-viewer__close {
+.memory-viewer--open .memory-viewer__close {
   opacity: 1;
 }
 

@@ -28,7 +28,7 @@ function MemoryViewer({ photo, content, status, onClose }: MemoryViewerProps) {
         .filter(Boolean)
     : []
 
-  useEscapeKey(onClose, status === 'opening' || status === 'open')
+  useEscapeKey(onClose, status === 'open')
 
   useEffect(() => {
     if (status !== 'open') return undefined
@@ -76,7 +76,7 @@ function MemoryViewer({ photo, content, status, onClose }: MemoryViewerProps) {
           <motion.div
             className="memory-viewer__flip-card"
             initial={{ rotateY: 0 }}
-            animate={{ rotateY: isFlipped && status !== 'closing' ? 180 : 0 }}
+            animate={{ rotateY: isFlipped ? 180 : 0 }}
             transition={{ duration: 0.78, ease: cardEase }}
           >
             <div className="memory-viewer__face memory-viewer__front" aria-hidden={isFlipped}>
