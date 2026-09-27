@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { AnimatePresence, LayoutGroup } from 'motion/react'
 import './App.css'
 import Ending from './components/Ending'
 import Gallery from './components/Gallery'
@@ -58,20 +59,29 @@ function App() {
 
   return (
     <div className="app-shell" id="top">
-      <main>
-        <Hero />
-        <Gallery photos={generatedPhotos} onOpen={openViewer} />
-        <Ending />
-      </main>
+      <LayoutGroup>
+        <main>
+          <Hero />
+          <Gallery
+            photos={generatedPhotos}
+            activePhotoId={activePhoto?.id ?? null}
+            onOpen={openViewer}
+          />
+          <Ending />
+        </main>
 
-      {activePhoto && viewerStatus !== 'closed' && (
-        <MemoryViewer
-          photo={activePhoto}
-          content={activeMemory}
-          status={viewerStatus}
-          onClose={closeViewer}
-        />
-      )}
+        <AnimatePresence initial={false}>
+          {activePhoto && viewerStatus !== 'closed' && (
+            <MemoryViewer
+              key={activePhoto.id}
+              photo={activePhoto}
+              content={activeMemory}
+              status={viewerStatus}
+              onClose={closeViewer}
+            />
+          )}
+        </AnimatePresence>
+      </LayoutGroup>
     </div>
   )
 }

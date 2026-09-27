@@ -6,6 +6,7 @@ import MemoryCard from './MemoryCard'
 
 interface GalleryProps {
   photos: Photo[]
+  activePhotoId: string | null
   onOpen: (photo: Photo, sourceElement: HTMLElement) => void
 }
 
@@ -91,7 +92,7 @@ function createRows(photos: Photo[], aspectRatios: Record<string, number>, colum
   return rows
 }
 
-function Gallery({ photos, onOpen }: GalleryProps) {
+function Gallery({ photos, activePhotoId, onOpen }: GalleryProps) {
   const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({})
   const [columnCount, setColumnCount] = useState(() => getColumnCount(window.innerWidth))
 
@@ -156,11 +157,12 @@ function Gallery({ photos, onOpen }: GalleryProps) {
 
                 return (
                   <MemoryCard
-                    key={photo.id}
-                    photo={photo}
-                    index={photoIndex}
-                    size={size}
-                    onOpen={onOpen}
+                  key={photo.id}
+                  photo={photo}
+                  index={photoIndex}
+                  size={size}
+                  isActive={activePhotoId === photo.id}
+                  onOpen={onOpen}
                     onAspectRatio={handleAspectRatio}
                   />
                 )
