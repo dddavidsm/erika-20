@@ -67,6 +67,12 @@ function parseMemoryDate(value: string | undefined) {
   return Number.isNaN(parsedDate) ? null : parsedDate
 }
 
+function monthPosition(month: string) {
+  const normalized = month.toLocaleLowerCase('es-ES')
+  const position = spanishMonths[normalized]
+  return position ?? Object.keys(spanishMonths).length
+}
+
 function createRows(photos: Photo[], aspectRatios: Record<string, number>, columnCount: number) {
   const rows: Photo[][] = []
   const targetRatioTotal = columnCount * 1.2
@@ -99,13 +105,23 @@ function Gallery({ photos, activePhotoId, onOpen }: GalleryProps) {
   const orderedPhotos = useMemo(
     () =>
       photos
-        .map((photo, index) => ({ photo, index, date: parseMemoryDate(memoryContent[photo.id]?.date) }))
+        .map((photo, index) => ({
+          photo,
+          index,
+          date: parseMemoryDate(memoryContent[photo.id]?.date),
+          month: monthPosition(photo.month),
+        }))
         .sort((left, right) => {
           if (left.date !== null && right.date !== null && left.date !== right.date) {
             return left.date - right.date
           }
-          if (left.date !== null && right.date === null) return -1
-          if (left.date === null && right.date !== null) return 1
+
+          if (left.date === null || right.date === null) {
+            if (left.month !== right.month) return left.month - right.month
+            if (left.date !== null) return -1
+            if (right.date !== null) return 1
+          }
+
           return left.index - right.index
         })
         .map(({ photo }) => photo),

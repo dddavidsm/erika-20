@@ -16,6 +16,13 @@ const rawPhotos: Photo[] = [
     "month": "marzo"
   },
   {
+    "id": "abril/7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG",
+    "fileName": "7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG",
+    "relativePath": "abril/7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG",
+    "src": "/photos/abril/7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG",
+    "month": "abril"
+  },
+  {
     "id": "abril/IMG_1896.JPEG",
     "fileName": "IMG_1896.JPEG",
     "relativePath": "abril/IMG_1896.JPEG",
@@ -37,10 +44,24 @@ const rawPhotos: Photo[] = [
     "month": "abril"
   },
   {
+    "id": "mayo/2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG",
+    "fileName": "2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG",
+    "relativePath": "mayo/2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG",
+    "src": "/photos/mayo/2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG",
+    "month": "mayo"
+  },
+  {
     "id": "mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
     "fileName": "b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
     "relativePath": "mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
     "src": "/photos/mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG",
+    "month": "mayo"
+  },
+  {
+    "id": "mayo/f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG",
+    "fileName": "f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG",
+    "relativePath": "mayo/f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG",
+    "src": "/photos/mayo/f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG",
     "month": "mayo"
   },
   {
@@ -140,6 +161,13 @@ const rawPhotos: Photo[] = [
     "relativePath": "agosto/IMG_4449.JPEG",
     "src": "/photos/agosto/IMG_4449.JPEG",
     "month": "agosto"
+  },
+  {
+    "id": "septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG",
+    "fileName": "76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG",
+    "relativePath": "septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG",
+    "src": "/photos/septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG",
+    "month": "septiembre"
   },
   {
     "id": "septiembre/8059274C-19C2-43FD-A41D-8E6979360CD2_8274AA9B-FA25-439D-BD27-639181B9AFD2.JPEG",
