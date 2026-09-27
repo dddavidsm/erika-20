@@ -10,9 +10,6 @@ function Ending() {
         <br />
         <em>Te quiero ♡</em>
       </h2>
-      <a className="ending-section__back" href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-        Volver al principio <span aria-hidden="true">↑</span>
-      </a>
       <a className="ending-section__gift-link" href="#regalo" aria-label="Bajar al regalo sorpresa">
         <span>Hay algo más para ti</span>
         <span className="ending-section__gift-arrow" aria-hidden="true">↓</span>
