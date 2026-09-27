@@ -7,9 +7,10 @@ interface MemoryCardProps {
   index: number
   size: MemorySize
   onOpen: (photo: Photo, sourceElement: HTMLElement) => void
+  onAspectRatio: (id: string, ratio: number) => void
 }
 
-function MemoryCard({ photo, index, size, onOpen }: MemoryCardProps) {
+function MemoryCard({ photo, index, size, onOpen, onAspectRatio }: MemoryCardProps) {
   const [hasError, setHasError] = useState(false)
 
   return (
@@ -25,6 +26,12 @@ function MemoryCard({ photo, index, size, onOpen }: MemoryCardProps) {
           alt={`Recuerdo ${index + 1}`}
           loading="lazy"
           decoding="async"
+          onLoad={(event) => {
+            const { naturalHeight, naturalWidth } = event.currentTarget
+            if (naturalWidth > 0 && naturalHeight > 0) {
+              onAspectRatio(photo.id, naturalWidth / naturalHeight)
+            }
+          }}
           onError={() => setHasError(true)}
         />
       )}

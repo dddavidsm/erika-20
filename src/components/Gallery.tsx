@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react'
 import { memoryContent } from '../data/memories'
 import type { MemorySize } from '../types/memory'
 import type { Photo } from '../types/photo'
@@ -23,7 +24,60 @@ const sizePattern: MemorySize[] = [
   'normal',
 ]
 
+function getColumnCount(width: number) {
+  if (width <= 620) return 2
+  if (width <= 900) return 3
+  return 4
+}
+
+function createRows(photos: Photo[], aspectRatios: Record<string, number>, columnCount: number) {
+  const rows: Photo[][] = []
+  const targetRatioTotal = columnCount * 1.2
+  let currentRow: Photo[] = []
+  let currentRatioTotal = 0
+
+  for (const photo of photos) {
+    const ratio = aspectRatios[photo.id] ?? 1.2
+    currentRow.push(photo)
+    currentRatioTotal += ratio
+
+    const enoughPhotos = currentRow.length >= columnCount
+    const balancedEnough = currentRow.length > 1 && currentRatioTotal >= targetRatioTotal
+
+    if (enoughPhotos || balancedEnough) {
+      rows.push(currentRow)
+      currentRow = []
+      currentRatioTotal = 0
+    }
+  }
+
+  if (currentRow.length > 0) rows.push(currentRow)
+  return rows
+}
+
 function Gallery({ photos, onOpen }: GalleryProps) {
+  const [aspectRatios, setAspectRatios] = useState<Record<string, number>>({})
+  const [columnCount, setColumnCount] = useState(() => getColumnCount(window.innerWidth))
+
+  useEffect(() => {
+    const handleResize = () => setColumnCount(getColumnCount(window.innerWidth))
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const rows = useMemo(
+    () => createRows(photos, aspectRatios, columnCount),
+    [aspectRatios, columnCount, photos],
+  )
+
+  const handleAspectRatio = (id: string, ratio: number) => {
+    setAspectRatios((current) => {
+      if (current[id] === ratio) return current
+      return { ...current, [id]: ratio }
+    })
+  }
+
   return (
     <section className="gallery-section" id="recuerdos" aria-labelledby="gallery-title">
       <div className="gallery-section__intro">
@@ -33,20 +87,34 @@ function Gallery({ photos, onOpen }: GalleryProps) {
 
       {photos.length > 0 ? (
         <div className="gallery-grid">
-          {photos.map((photo, index) => {
-            const memory = memoryContent[photo.id]
-            const size = memory?.size ?? sizePattern[index % sizePattern.length]
+          {rows.map((row, rowIndex) => (
+            <div
+              className="gallery-row"
+              key={`row-${rowIndex}`}
+              style={{
+                gridTemplateColumns: row
+                  .map((photo) => `${aspectRatios[photo.id] ?? 1.2}fr`)
+                  .join(' '),
+              }}
+            >
+              {row.map((photo) => {
+                const photoIndex = photos.findIndex((item) => item.id === photo.id)
+                const memory = memoryContent[photo.id]
+                const size = memory?.size ?? sizePattern[photoIndex % sizePattern.length]
 
-            return (
-              <MemoryCard
-                key={photo.id}
-                photo={photo}
-                index={index}
-                size={size}
-                onOpen={onOpen}
-              />
-            )
-          })}
+                return (
+                  <MemoryCard
+                    key={photo.id}
+                    photo={photo}
+                    index={photoIndex}
+                    size={size}
+                    onOpen={onOpen}
+                    onAspectRatio={handleAspectRatio}
+                  />
+                )
+              })}
+            </div>
+          ))}
         </div>
       ) : (
         <p className="gallery-empty">Añade fotografías en public/photos para comenzar.</p>

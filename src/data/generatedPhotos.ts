@@ -58,10 +58,10 @@ export const generatedPhotos: Photo[] = [
     "month": "junio"
   },
   {
-    "id": "junio/IMG_3416.JPEG",
-    "fileName": "IMG_3416.JPEG",
-    "relativePath": "junio/IMG_3416.JPEG",
-    "src": "/photos/junio/IMG_3416.JPEG",
+    "id": "junio/IMG_3415.JPEG",
+    "fileName": "IMG_3415.JPEG",
+    "relativePath": "junio/IMG_3415.JPEG",
+    "src": "/photos/junio/IMG_3415.JPEG",
     "month": "junio"
   },
   {
