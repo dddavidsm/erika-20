@@ -129,7 +129,7 @@ export const memoryContent: MemoryContentMap = {
   'agosto/8AF1A14A-5B19-42A5-8AEC-95F96CA3BA26_22A2A9AE-9965-4BB9-9EE5-2F4FBC6C7284.JPEG': {
     title: 'Sushi',
     date: '01-08-2026',
-    text: 'Mi compañía favorita, y mi compañía favorita, siempre es un placer compartir una pieza de sushi contigo, un niguiri no, pero otra sí, jijiji, te amo.',
+    text: 'Mi compañía favorita, y mi comida favorita, siempre es un placer compartir una pieza de sushi contigo, un niguiri no, pero otra sí, jijiji, te amo.',
     size: 'normal',
   },
   'agosto/IMG_4149.JPEG': {
