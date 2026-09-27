@@ -82,7 +82,7 @@ const photos = collectPhotos(photosRoot).sort((left, right) => {
   return collator.compare(left.relativePath, right.relativePath)
 })
 
-const fileContents = `import type { Photo } from '../types/photo'\n\nexport const generatedPhotos: Photo[] = ${JSON.stringify(photos, null, 2)}\n`
+const fileContents = `import type { Photo } from '../types/photo'\n\nconst rawPhotos: Photo[] = ${JSON.stringify(photos, null, 2)}\n\nexport const generatedPhotos: Photo[] = rawPhotos.map((photo) => ({\n  ...photo,\n  src: \`\${import.meta.env.BASE_URL}\${photo.src.slice(1)}\`,\n}))\n`
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true })
 fs.writeFileSync(outputPath, fileContents, 'utf8')

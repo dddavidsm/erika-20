@@ -1,6 +1,6 @@
 import type { Photo } from '../types/photo'
 
-export const generatedPhotos: Photo[] = [
+const rawPhotos: Photo[] = [
   {
     "id": "marzo/IMG_1850.JPEG",
     "fileName": "IMG_1850.JPEG",
@@ -198,3 +198,8 @@ export const generatedPhotos: Photo[] = [
     "month": "septiembre"
   }
 ]
+
+export const generatedPhotos: Photo[] = rawPhotos.map((photo) => ({
+  ...photo,
+  src: `${import.meta.env.BASE_URL}${photo.src.slice(1)}`,
+}))
