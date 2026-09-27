@@ -1,5 +1,6 @@
 import { destinations } from '../data/destinations'
 import type { DestinationId } from '../types/gift'
+import { assetUrl } from '../utils/assetUrl'
 
 interface DestinationArtworkProps {
   destination: DestinationId
@@ -14,7 +15,7 @@ function DestinationArtwork({ destination, label }: DestinationArtworkProps) {
   return (
     <img
       className="destination-artwork"
-      src={selectedDestination.image}
+      src={assetUrl(selectedDestination.image)}
       alt={label}
       loading="lazy"
       decoding="async"

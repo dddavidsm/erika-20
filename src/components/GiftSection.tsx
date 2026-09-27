@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { destinations } from '../data/destinations'
 import type { DestinationId, TravelMonth } from '../types/gift'
+import { assetUrl } from '../utils/assetUrl'
 import DestinationArtwork from './DestinationArtwork'
 
 const travelMonths: TravelMonth[] = ['noviembre', 'diciembre', 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre']
@@ -120,7 +121,7 @@ function GiftSection() {
                 <motion.img
                   key={activeSpot.image}
                   className="destination-detail__image"
-                  src={activeSpot.image}
+                  src={assetUrl(activeSpot.image)}
                   alt={`${activeSpot.name}, ${exploredDestination.name}`}
                   initial={{ opacity: 0.35, scale: 1.025 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -144,7 +145,7 @@ function GiftSection() {
                   aria-selected={index === activeSpotIndex}
                   onClick={() => setActiveSpotIndex(index)}
                 >
-                  <img className="destination-spot__art" src={spot.image} alt={`${spot.name}, ${exploredDestination.name}`} loading="lazy" decoding="async" />
+                  <img className="destination-spot__art" src={assetUrl(spot.image)} alt={`${spot.name}, ${exploredDestination.name}`} loading="lazy" decoding="async" />
                   <span>
                     <strong>{spot.name}</strong>
                     <span>{spot.description}</span>
