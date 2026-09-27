@@ -30,22 +30,34 @@ export const memoryContent: MemoryContentMap = {
     text: 'Nuestro sitio merendoliendo de confianza. Podríamos organizar un viaje en navidad ;).',
     size: 'normal',
   },
+  'abril/7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG': {
+    title: 'Una siestecica',
+    date: '22-04-2026',
+    text: 'Dormir juntos se siente como un abrazo eterno, ojalá dormir siempre juntos, descansar, y sentir que estamos juntos.',
+    size: 'normal',
+  },
   'abril/IMG_2261.JPEG': {
     title: 'Lo siento por el mal trago, pero  asi te lo quitas de encima',
     date: '25-04-2026',
     text: 'Un dia así siempre queda para el recuerdo, y aunque lo recuerdes con algo de sufrimiento, para mi es la forma de expresar lo que quiero, que estés presente en mi vida, que me acompañes en todo momento, que me apoyes en todo lo que hago, y en que seas una mas en mi familia.',
     size: 'normal',
   },
-  'abril/7f246e1b-8d88-4731-a08e-6ba6ffad031a.JPEG': {
-    title: '',
-    date: '',
-    text: '',
+  'mayo/2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG': {
+    title: 'Pelillos loquillos',
+    date: '11-05-2026',
+    text: 'Ojalá mas fotos asi, viendo lo que somos realmente, dos guapillos.',
+    size: 'normal',
+  },
+  'mayo/f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG': {
+    title: 'Un recuerdo impreso',
+    date: '11-05-2026',
+    text: 'Gracias por hacerme sentir libre de amar, de ser yo, de tratarte y quererte como quieres y como quiero, de la mejor forma posible, de la manera que realmente me sale, queriendote y amandote, haciendo las cosas con cariño y de corazón. Gracias por estar a mi lado, por enseñarme lo que es el amor, por enamorarme cada dia, por demostrar lo que es querer a alguien de verdad. Te quiero mucho.',
     size: 'normal',
   },
   'mayo/b7ce95a5-7479-412d-9c4b-eccafc83fa99.JPEG': {
     title: 'Mi cumpleaños',
     date: '17-05-2026',
-    text: 'Un día mas que especial, sobretodo por ti.',
+    text: 'Un día más que especial, sobretodo por compartirlo contigo, compartirlo con la gente que te quiere, que aprecias, y que amas, eres el mejor regalo que he podido tener.',
     size: 'normal',
   },
   'mayo/IMG_3215.JPEG': {
@@ -60,18 +72,6 @@ export const memoryContent: MemoryContentMap = {
     text: 'Ya no es solo una camiseta, es una forma de estar mas cerca de ti, sin estarlo.',
     size: 'normal',
   },
-  'mayo/2c2f273e-30c9-4c03-9156-a9932d505ca1.JPEG': {
-    title: '',
-    date: '',
-    text: '',
-    size: 'normal',
-  },
-  'mayo/f44a63d0-3b6f-4c38-b903-94196f99a400.JPEG': {
-    title: '',
-    date: '',
-    text: '',
-    size: 'normal',
-  },
   'junio/IMG_3349.JPEG': {
     title: 'Max y tu',
     date: '09-06-2026',
@@ -81,7 +81,7 @@ export const memoryContent: MemoryContentMap = {
   'junio/IMG_3415.JPEG': {
     title: 'Tu graduación',
     date: '15-06-2026',
-    text: 'Feliz de verte cumplir metas, y de verte compartirlo con la gente que te quiere. Todavia queda mucho camino juntos, y de todos tus logros, me sentiré orgullosisimo de ti.',
+    text: 'Feliz de verte cumplir metas, y de verte compartirlo con la gente que te quiere. Todavia queda mucho camino juntos, y de todos tus logros me sentiré orgullosisimo siempre de ti.',
     size: 'normal',
   },
   'junio/IMG_3422.JPEG': {
@@ -123,7 +123,7 @@ export const memoryContent: MemoryContentMap = {
   'agosto/1A0A4D3D-77FB-4D5F-9642-9080844173BF_C6399645-06CE-4552-AE90-4331B9D6114F.JPEG': {
     title: 'Mi ratilla playera',
     date: '01-08-2026',
-    text: 'Un dia nublado, no nubla tu belleza, una playa vacía, esta llena de tu presencia, y aun no habiendo ido a la playa , tanto como hubieses preferido, todas las veces las recuerdo bonitas, por ti.',
+    text: 'Un dia nublado, no nubla tu belleza, una playa vacía, esta llena de tu presencia, y aun no habiendo ido a la playa tanto como hubieses querido, todas las veces las recuerdo bonitas, por ti.',
     size: 'normal',
   },
   'agosto/8AF1A14A-5B19-42A5-8AEC-95F96CA3BA26_22A2A9AE-9965-4BB9-9EE5-2F4FBC6C7284.JPEG': {
@@ -165,7 +165,13 @@ export const memoryContent: MemoryContentMap = {
   'septiembre/IMG_5071.JPEG': {
     title: 'Merendolas',
     date: '11-09-2026',
-    text: 'Ese cuerpo tiene que estar bien nutrío, y que mejor que merendolar juntos.',
+    text: 'Ese cuerpo tiene que estar bien nutrío, y que mejor plan que merendolar juntos.',
+    size: 'normal',
+  },
+  'septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG': {
+    title: 'Llevame contigo',
+    date: '12-09-2026',
+    text: 'Siempre que puedas, llevame contigo, y si no puedes, llevame en tu corazón, que es donde siempre estaré.',
     size: 'normal',
   },
   'septiembre/IMG_5093.JPEG': {
@@ -189,13 +195,7 @@ export const memoryContent: MemoryContentMap = {
   'septiembre/a587fae2-cc66-415e-b106-73420c4b3c9f.JPEG': {
     title: 'Oktoberfest',
     date: '26-09-2026',
-    text: 'Nuestra primera cerveza juntos, y espero que no sea la última, aunque no me guste la cerveza, contigo todo es mejor.',
-    size: 'normal',
-  },
-  'septiembre/76ddc79d-0d62-4afd-8235-a9bbba02667c.JPEG': {
-    title: '',
-    date: '',
-    text: '',
+    text: 'Nuestra primera cerveza juntos, y espero que no sea la última, aunque no me guste mucho la cerveza, compartir cualqueir cosa contigo siempre será un placer.',
     size: 'normal',
   },
 }
