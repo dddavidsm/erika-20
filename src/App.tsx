@@ -3,6 +3,7 @@ import { LayoutGroup } from 'motion/react'
 import './App.css'
 import Ending from './components/Ending'
 import Gallery from './components/Gallery'
+import GiftSection from './components/GiftSection'
 import Hero from './components/Hero'
 import MemoryViewer from './components/MemoryViewer'
 import { generatedPhotos } from './data/generatedPhotos'
@@ -45,6 +46,7 @@ function App() {
             onOpen={openViewer}
           />
           <Ending />
+          <GiftSection />
         </main>
 
         {activePhoto && viewerStatus === 'open' && (
