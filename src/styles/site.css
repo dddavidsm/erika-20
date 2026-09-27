@@ -621,6 +621,33 @@
   background: var(--surface-deep);
 }
 
+.destination-artwork--other {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.5px),
+    linear-gradient(135deg, #d8c8b9, #b7c4c0);
+  font-family: var(--serif);
+  text-align: center;
+}
+
+.destination-artwork--other span {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.destination-artwork--other small {
+  color: rgba(33, 29, 26, 0.66);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .destination-card__select:hover .destination-artwork,
 .destination-card__select:focus-visible .destination-artwork {
   transform: scale(1.045);
@@ -845,6 +872,10 @@
   border: 0;
 }
 
+.gift-form__field--custom {
+  grid-column: 1 / -1;
+}
+
 .gift-form__field label,
 .gift-form__field legend {
   display: block;
@@ -866,6 +897,29 @@
   background: var(--surface);
   font-family: var(--serif);
   font-size: 1.05rem;
+}
+
+.gift-form input[type='text'] {
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(33, 29, 26, 0.2);
+  border-radius: 0;
+  color: var(--text);
+  background: var(--surface);
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+
+.gift-form input[type='text']::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.gift-form input[type='text']:focus-visible,
+.gift-form select:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
 }
 
 .choice-row,

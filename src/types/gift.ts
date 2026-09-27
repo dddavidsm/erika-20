@@ -1,4 +1,4 @@
-export type DestinationId = 'granada' | 'paris' | 'praga' | 'viena' | 'londres'
+export type DestinationId = 'granada' | 'paris' | 'praga' | 'viena' | 'londres' | 'otro'
 
 export type TravelMonth =
   | 'enero'

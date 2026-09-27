@@ -14,6 +14,7 @@ function GiftSection() {
   const [activeSpotIndex, setActiveSpotIndex] = useState(0)
   const [month, setMonth] = useState<TravelMonth | ''>('')
   const [days, setDays] = useState<number | null>(null)
+  const [customDestination, setCustomDestination] = useState('')
   const [companion, setCompanion] = useState<'David' | 'otro' | ''>('')
   const [saved, setSaved] = useState(false)
 
@@ -25,7 +26,10 @@ function GiftSection() {
     () => destinations.find((destination) => destination.id === exploredId),
     [exploredId],
   )
-  const canSave = Boolean(selectedDestination && month && days && companion === 'David')
+  const destinationLabel = selectedDestination?.id === 'otro'
+    ? customDestination.trim()
+    : selectedDestination?.name
+  const canSave = Boolean(destinationLabel && month && days && companion === 'David')
   const activeSpot = exploredDestination?.spots[activeSpotIndex] ?? exploredDestination?.spots[0]
 
   const handleCompanion = (value: 'David' | 'otro') => {
@@ -88,27 +92,29 @@ function GiftSection() {
                   </span>
                   <span className="destination-card__radio" aria-hidden="true" />
                 </button>
-                <button
-                  className="destination-card__explore"
-                  type="button"
-                  aria-expanded={isExplored}
-                  onClick={() => {
-                    if (isExplored) {
-                      setExploredId(null)
-                      return
-                    }
+                {destination.spots.length > 0 && (
+                  <button
+                    className="destination-card__explore"
+                    type="button"
+                    aria-expanded={isExplored}
+                    onClick={() => {
+                      if (isExplored) {
+                        setExploredId(null)
+                        return
+                      }
 
-                    handleDestinationSelect(destination.id)
-                  }}
-                >
-                  {isExplored ? 'Cerrar lugares' : 'Ver lugares'} <span aria-hidden="true">↗</span>
-                </button>
+                      handleDestinationSelect(destination.id)
+                    }}
+                  >
+                    {isExplored ? 'Cerrar lugares' : 'Ver lugares'} <span aria-hidden="true">↗</span>
+                  </button>
+                )}
               </article>
             )
           })}
         </div>
 
-        {exploredDestination && (
+        {exploredDestination && exploredDestination.spots.length > 0 && (
           <motion.div
             className="destination-detail"
             key={exploredDestination.id}
@@ -157,6 +163,22 @@ function GiftSection() {
         )}
 
         <div className="gift-form" aria-label="Personaliza el viaje">
+          {selectedDestination?.id === 'otro' && (
+            <div className="gift-form__field gift-form__field--custom">
+              <label htmlFor="custom-destination">¿Qué destino tienes en mente?</label>
+              <input
+                id="custom-destination"
+                type="text"
+                value={customDestination}
+                onChange={(event) => {
+                  setCustomDestination(event.target.value)
+                  setSaved(false)
+                }}
+                placeholder="Escribe el lugar"
+                autoComplete="off"
+              />
+            </div>
+          )}
           <div className="gift-form__field">
             <label htmlFor="travel-month">¿Qué mes te apetece?</label>
             <select
@@ -224,12 +246,12 @@ function GiftSection() {
               <span className="gift-summary__check" aria-hidden="true">✓</span>
               <div>
                 <strong>Plan guardado por ahora.</strong>
-                <p>{selectedDestination.name} · {month} · {days} {days === 1 ? 'día' : 'días'} · David</p>
+                <p>{destinationLabel} · {month} · {days} {days === 1 ? 'día' : 'días'} · David</p>
               </div>
             </div>
           ) : (
             <>
-              <p>{selectedDestination ? `Has elegido ${selectedDestination.name}.` : 'Elige una ciudad para empezar a imaginarlo.'}</p>
+              <p>{destinationLabel ? `Has elegido ${destinationLabel}.` : 'Elige una ciudad para empezar a imaginarlo.'}</p>
               <button className="gift-summary__button" type="button" disabled={!canSave} onClick={handleSave}>
                 Guardar mi elección <span aria-hidden="true">→</span>
               </button>

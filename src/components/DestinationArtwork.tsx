@@ -12,6 +12,15 @@ function DestinationArtwork({ destination, label }: DestinationArtworkProps) {
 
   if (!selectedDestination) return null
 
+  if (selectedDestination.id === 'otro') {
+    return (
+      <span className="destination-artwork destination-artwork--other" role="img" aria-label={label}>
+        <span>Otro</span>
+        <small>Escríbelo tú</small>
+      </span>
+    )
+  }
+
   return (
     <img
       className="destination-artwork"

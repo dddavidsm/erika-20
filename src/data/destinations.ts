@@ -71,4 +71,14 @@ export const destinations: Destination[] = [
       { name: 'Covent Garden', description: 'Mercado, cafés y ambiente navideño para perdernos juntos.', image: '/destinations/londres-covent-garden.jpg', sourceUrl: 'https://commons.wikimedia.org/wiki/File:Covent_garden.jpg' },
     ],
   },
+  {
+    id: 'otro',
+    name: 'Otro',
+    country: 'tu elección',
+    eyebrow: 'un destino secreto',
+    description: '',
+    image: '',
+    sourceUrl: '',
+    spots: [],
+  },
 ]
