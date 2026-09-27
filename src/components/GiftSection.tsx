@@ -10,6 +10,7 @@ const dayOptions = [2, 3, 4, 5, 7]
 function GiftSection() {
   const [destinationId, setDestinationId] = useState<DestinationId | null>(null)
   const [exploredId, setExploredId] = useState<DestinationId | null>(null)
+  const [activeSpotIndex, setActiveSpotIndex] = useState(0)
   const [month, setMonth] = useState<TravelMonth | ''>('')
   const [days, setDays] = useState<number | null>(null)
   const [companion, setCompanion] = useState<'David' | 'otro' | ''>('')
@@ -24,6 +25,7 @@ function GiftSection() {
     [exploredId],
   )
   const canSave = Boolean(selectedDestination && month && days && companion === 'David')
+  const activeSpot = exploredDestination?.spots[activeSpotIndex] ?? exploredDestination?.spots[0]
 
   const handleCompanion = (value: 'David' | 'otro') => {
     setCompanion(value)
@@ -33,6 +35,13 @@ function GiftSection() {
   const handleSave = () => {
     if (!canSave) return
     setSaved(true)
+  }
+
+  const handleDestinationSelect = (id: DestinationId) => {
+    setDestinationId(id)
+    setExploredId(id)
+    setActiveSpotIndex(0)
+    setSaved(false)
   }
 
   return (
@@ -66,10 +75,7 @@ function GiftSection() {
                   className="destination-card__select"
                   type="button"
                   aria-pressed={isSelected}
-                  onClick={() => {
-                    setDestinationId(destination.id)
-                    setSaved(false)
-                  }}
+                  onClick={() => handleDestinationSelect(destination.id)}
                 >
                   <span className="destination-card__art">
                     <DestinationArtwork destination={destination.id} label={`${destination.name}, ${destination.country}`} />
@@ -85,7 +91,14 @@ function GiftSection() {
                   className="destination-card__explore"
                   type="button"
                   aria-expanded={isExplored}
-                  onClick={() => setExploredId(isExplored ? null : destination.id)}
+                  onClick={() => {
+                    if (isExplored) {
+                      setExploredId(null)
+                      return
+                    }
+
+                    handleDestinationSelect(destination.id)
+                  }}
                 >
                   {isExplored ? 'Cerrar lugares' : 'Ver lugares'} <span aria-hidden="true">↗</span>
                 </button>
@@ -103,25 +116,40 @@ function GiftSection() {
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="destination-detail__hero">
-              <DestinationArtwork
-                destination={exploredDestination.id}
-                label={`Ilustración de ${exploredDestination.name}`}
-              />
+              {activeSpot && (
+                <motion.img
+                  key={activeSpot.image}
+                  className="destination-detail__image"
+                  src={activeSpot.image}
+                  alt={`${activeSpot.name}, ${exploredDestination.name}`}
+                  initial={{ opacity: 0.35, scale: 1.025 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  decoding="async"
+                />
+              )}
               <div className="destination-detail__hero-copy">
-                <p className="eyebrow">una pequeña pista</p>
-                <h4>{exploredDestination.name}</h4>
-                <p>{exploredDestination.description}</p>
+                <p className="eyebrow">{exploredDestination.name} · lugar {activeSpotIndex + 1} de {exploredDestination.spots.length}</p>
+                <h4>{activeSpot?.name}</h4>
+                <p>{activeSpot?.description}</p>
               </div>
             </div>
-            <div className="destination-spots">
-              {exploredDestination.spots.map((spot) => (
-                <div className="destination-spot" key={spot.name}>
+            <div className="destination-spots" role="tablist" aria-label={`Lugares para visitar en ${exploredDestination.name}`}>
+              {exploredDestination.spots.map((spot, index) => (
+                <button
+                  className={`destination-spot${index === activeSpotIndex ? ' destination-spot--active' : ''}`}
+                  key={spot.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === activeSpotIndex}
+                  onClick={() => setActiveSpotIndex(index)}
+                >
                   <img className="destination-spot__art" src={spot.image} alt={`${spot.name}, ${exploredDestination.name}`} loading="lazy" decoding="async" />
-                  <div>
+                  <span>
                     <strong>{spot.name}</strong>
-                    <p>{spot.description}</p>
-                  </div>
-                </div>
+                    <span>{spot.description}</span>
+                  </span>
+                </button>
               ))}
             </div>
           </motion.div>
